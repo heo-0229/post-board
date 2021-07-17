@@ -1,5 +1,7 @@
+@import 'variables';
 .postscreen{
   width: 75%;
   height: 100%;
+  background-color: $color-gray-light;
   position: relative;
 }
