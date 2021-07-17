@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
 // modules
-import post from "./post";
+// import board from "./moduels/board";
 
 // root reducer
 const rootReducer = combineReducers({
-  post,
+  // board,
 });
 
 export default rootReducer;
