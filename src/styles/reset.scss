@@ -61,3 +61,16 @@ html {
 input:focus {
 	outline: none;
 }
+
+/* button 그림자,테두리 제거, pointer */
+button{
+	box-shadow: none;
+	border: none;
+	cursor: pointer;
+}
+
+/* 글 넘침 줄임, 글자 세로 기준 중앙 */
+span{
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}

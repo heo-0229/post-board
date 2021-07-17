@@ -1,5 +1,5 @@
-import React from 'react';
-import './styles/App.scss';
+// style
+import './styles/app.scss';
 
 // Components
 import { PostList, PostScreen } from './components';

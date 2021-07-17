@@ -1,10 +1,13 @@
-import React from 'react';
 import '../styles/post-screen.scss';
+
+// element
+import { Post } from './elements';
 
 const PostScreen = () => {
   return (
-    <div className="PostScreen">
-      post
+    <div className="postscreen">
+      {/* Post */}
+      <Post />
     </div>
   );
 };

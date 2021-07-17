@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/post-list.scss';
 
 // Element
@@ -9,7 +8,9 @@ const PostList = () => {
     <div className="postlist">
       <PostName />
       {/* 포스트 추가 버튼 */}
-      <button>+</button>
+      <div className="postlist-button-wrap">
+        <button>+</button>
+      </div>
     </div>
   );
 };

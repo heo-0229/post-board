@@ -1,8 +1,11 @@
-import React from 'react';
 import '../../styles/post-name.scss';
 
 const PostName = () => {
-  return <div className="postname">◼ postname</div>;
+  return (
+    <div className="postname">
+      <span>postname</span>
+    </div>
+  );
 };
 
 export default PostName;
