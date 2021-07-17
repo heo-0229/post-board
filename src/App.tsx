@@ -1,17 +1,14 @@
 import React from 'react';
 import './styles/App.scss';
 
-const App: React.FC = () => {
+// Components
+import { PostList, PostScreen } from './components';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <PostList />
+      <PostScreen />
     </div>
   );
 };
