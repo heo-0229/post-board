@@ -1,5 +1,5 @@
 // 컴포넌트 import, export 관리
-import PostList from './PostList';
+import BoardList from './BoardList';
 import PostScreen from './PostScreen';
 
-export { PostList, PostScreen };
+export { BoardList, PostScreen };
