@@ -1,11 +1,11 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 // modules
-// import board from "./moduels/board";
+import board from './board';
 
 // root reducer
 const rootReducer = combineReducers({
-  // board,
+  board,
 });
 
 export default rootReducer;

@@ -2,13 +2,13 @@
 import './styles/app.scss';
 
 // Components
-import { PostList, PostScreen } from './components';
+import { BoardList, BoardScreen } from './components';
 
 const App = () => {
   return (
     <div className="app">
-      <PostList />
-      <PostScreen />
+      <BoardList />
+      <BoardScreen />
     </div>
   );
 };
