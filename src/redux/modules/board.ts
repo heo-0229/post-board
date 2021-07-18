@@ -1,4 +1,8 @@
 import { createReducer, createAction, PayloadAction } from '@reduxjs/toolkit';
+import { Dispatch } from 'react';
+
+// post action
+import { postActions } from './post';
 
 // BoardType 선언
 interface BoardType {
@@ -44,6 +48,8 @@ const board = createReducer(initialState, {
   [selectBoard.type]: (state: BoardListType, action: PayloadAction<BoardType>) => {
     // 선택된 보드 id 기록
     state.selected = action.payload;
+    // 수정모드 비활성화
+    removeEditingPostId();
   },
   [editBoardName.type]: (state, action: PayloadAction<BoardType>) => {
     // 수정된 보드 이름 기록
@@ -54,6 +60,11 @@ const board = createReducer(initialState, {
     }
   },
 });
+
+// 수정모드를 비활성화할 함수
+const removeEditingPostId = () => (dispatch: Dispatch<{ payload: number; type: string }>) => {
+  dispatch(postActions.setEditingPostId(0));
+};
 
 // 내보낼 액션들
 export const boardActions = {

@@ -3,20 +3,50 @@ import '../../styles/post.scss';
 // PostType import
 import { PostType } from '../../redux/modules/post';
 
-const Post = (props: { post: PostType }) => {
-  const { title, content, position } = props.post;
-  console.log(position);
+// redux, actions
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux/modules';
+import { postActions } from '../../redux/modules/post';
+
+const Post = (props: { post: PostType; selectedId: number }) => {
+  const dispatch = useDispatch();
+  // 현재 보드 id 가져오기
+  const { title, content, position, postId } = props.post;
+  const { selectedId } = props;
+  //수정할 포스트 id 가져오기
+  const { editingId } = useSelector((state: RootState) => state.post);
+  // 리덕스에 저장된 보드 id
   return (
     <div className="post" style={{ top: position.y, left: position.x }}>
       {/* 포스트 상태바, 버튼 */}
       <div className="post-bar">
-        <span className="post-bar-name">{title}</span>
+        {/* 수정 기능 */}
+        {editingId === postId ? (
+          <input
+            className={`post-bar-name ${postId} editable`}
+            value={title}
+            onChange={(e) => dispatch(postActions.editPostTitle({ selectedId, postId, newTitle: e.target.value }))}
+          />
+        ) : (
+          <input disabled className={`post-bar-name ${postId} editable`} value={title} />
+        )}
         <div className="post-bar-button-wrap">
           <button className="hide">−</button>
           <button className="remove">x</button>
         </div>
       </div>
-      <span className="post-text">{content}</span>
+      {/* 수정 기능 */}
+      {editingId === postId ? (
+        <textarea
+          className={`post-text ${postId} editable`}
+          value={content}
+          onChange={(e) => {
+            dispatch(postActions.editPostContent({ selectedId, postId, newContent: e.target.value }));
+          }}
+        />
+      ) : (
+        <textarea disabled className={`post-text ${postId} editable`} value={content} />
+      )}
     </div>
   );
 };

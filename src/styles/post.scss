@@ -9,18 +9,23 @@
   color: $color-font;
   &-bar{
     width: 100%;
-    height: 3rem;
+    height: 4rem;
     display: flex;
     align-items: center;
-    background-color: rebeccapurple;
+    background-color: $color-bar-main;
     &-name{
       display: flex;
       align-items: center;
-      padding-left: 1rem;
       width: 70%;
-      height: 100%;
+      height: 80%;
       font-weight: 700;
       font-size: 1.8rem;
+      border: none;
+      cursor: pointer;
+      &:disabled{
+        color: $color-font;
+        background-color: $color-bar-main;
+      }
     }
     &-button-wrap{
       display: flex;
@@ -33,6 +38,7 @@
         height: 100%;
         font-size: 2.2rem;
         font-weight: 900;
+        background-color: $color-bar-button;
       }
       .hide{
         color: $color-yellow;
@@ -46,5 +52,12 @@
   &-text{
     font-size: 1.5rem;
     font-weight: 500;
+    width: 100%;
+    height: 100%;
+    border: none;
+    &:disabled{
+      color: $color-font;
+      background-color: $color-main-light;
+    }
   }
 }

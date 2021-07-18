@@ -10,9 +10,6 @@
     font-weight: 900;
     width: 80%;
     border: none;
-    :disabled{
-      background-color: $color-gray-light;
-    }
   }
   &-notice{
     color: $color-main;
