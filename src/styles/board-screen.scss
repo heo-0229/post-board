@@ -4,4 +4,15 @@
   height: 100%;
   background-color: $color-gray-light;
   position: relative;
+  color: $color-font;
+  &-info{
+    margin: 2rem 0 2rem 1rem;
+    font-size: 3rem;
+    font-weight: 900;
+    width: 80%;
+    border: none;
+    :disabled{
+      background-color: $color-gray-light;
+    }
+  }
 }
