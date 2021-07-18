@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 // modules
 import board from './board';
+import post from './post';
 
 // root reducer
 const rootReducer = combineReducers({
   board,
+  post,
 });
 
 export default rootReducer;

@@ -47,9 +47,13 @@ table {
 	border-spacing: 0;
 }
 
-/* 모든 요소 border-box */
+/* 모든 요소 border-box, 선택 막기 */
 * {
 	box-sizing: border-box;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 /* 반응형 폰트 크기 */
