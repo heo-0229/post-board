@@ -51,6 +51,9 @@ const BoardScreen = () => {
             postId = value.classList[1];
             // 리덕스에 저장
             dispatch(postActions.setEditingPostId(Number(postId)));
+          } else {
+            // 다른 곳을 클릭하면 비활성화
+            dispatch(postActions.setEditingPostId(Number(null)));
           }
         });
       }}
