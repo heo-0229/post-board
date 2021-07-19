@@ -11,7 +11,7 @@ import { postActions } from '../../redux/modules/post';
 const Post = (props: { post: PostType; selectedId: number }) => {
   const dispatch = useDispatch();
   // 현재 보드 id 가져오기
-  const { title, content, position, postId } = props.post;
+  const { title, content, position, postId, hide } = props.post;
   const { selectedId } = props;
   //수정할 포스트 id 가져오기
   const { editingId } = useSelector((state: RootState) => state.post);
@@ -31,21 +31,29 @@ const Post = (props: { post: PostType; selectedId: number }) => {
           <input disabled className={`post-bar-name ${postId} editable`} value={title} />
         )}
         <div className="post-bar-button-wrap">
-          <button className="hide">−</button>
+          {/* 숨김 토글 */}
+          <button
+            className="hide"
+            onClick={() => {
+              dispatch(postActions.togglePostHideMode({ boardId: selectedId, postId }));
+            }}
+          >
+            −
+          </button>
           <button className="remove">x</button>
         </div>
       </div>
       {/* 수정 기능 */}
       {editingId === postId ? (
         <textarea
-          className={`post-text ${postId} editable`}
+          className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`}
           value={content}
           onChange={(e) => {
             dispatch(postActions.editPostContent({ selectedId, postId, newContent: e.target.value }));
           }}
         />
       ) : (
-        <textarea disabled className={`post-text ${postId} editable`} value={content} />
+        <textarea disabled className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`} value={content} />
       )}
     </div>
   );

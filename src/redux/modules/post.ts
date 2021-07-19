@@ -43,6 +43,8 @@ const setEditingPostId = createAction<number>('post/SET_EDITING_POST_ID');
 const editPostTitle = createAction<{ selectedId: number; postId: number; newTitle: string }>('post/EDIT_POST_TITLE');
 // Post의 내용을 수정하는 액션 생성자
 const editPostContent = createAction<{ selectedId: number; postId: number; newContent: string }>('post/EDIT_POST_CONTENT');
+// Post의 숨김을 활성화/비활성화하는 액션 생성자
+const togglePostHideMode = createAction<{ boardId: number; postId: number }>('post/TOGGLE_POST_HIDE_MODE');
 
 // 리듀서
 // 스토어에 접근하여 상태관리
@@ -89,6 +91,12 @@ const post = createReducer(initialState, {
     // 수정
     state[selectedId][editIndex].content = newContent;
   },
+  [togglePostHideMode.type]: (state: PostListType, action: PayloadAction<{ boardId: number; postId: number }>) => {
+    const { boardId, postId } = action.payload;
+    // 숨김 모드를 토글할 포스트가 위치한 index 찾기
+    const hideToggleIndex = state[boardId].findIndex((value) => value.postId === postId);
+    state[boardId][hideToggleIndex].hide = !state[boardId][hideToggleIndex].hide;
+  },
 });
 
 // 내보낼 액션들
@@ -97,6 +105,7 @@ export const postActions = {
   editPostTitle,
   editPostContent,
   setEditingPostId,
+  togglePostHideMode,
 };
 
 export default post;

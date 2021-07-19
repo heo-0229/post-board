@@ -41,6 +41,8 @@ const BoardScreen = () => {
         } else {
           // 클릭 영역이 input 밖이면 input 비활성화
           setBoardEditing(false);
+          // 수정모드도 비활성화
+          dispatch(postActions.setEditingPostId(Number(null)));
         }
         // Post의 클릭 영역 감지
         // title 영역이면 활성화
@@ -51,11 +53,10 @@ const BoardScreen = () => {
             postId = value.classList[1];
             // 리덕스에 저장
             dispatch(postActions.setEditingPostId(Number(postId)));
-          } else {
-            // 다른 곳을 클릭하면 비활성화
-            dispatch(postActions.setEditingPostId(Number(null)));
           }
         });
+        // 감지되지 않았으면 비활성화
+        postId === '0' ?? dispatch(postActions.setEditingPostId(Number(null)));
       }}
       // 더블 클릭 이벤트
       onDoubleClick={(e) => {
