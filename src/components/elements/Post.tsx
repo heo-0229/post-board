@@ -24,11 +24,12 @@ const Post = (props: { post: PostType; selectedId: number }) => {
         {editingId === postId ? (
           <input
             className={`post-bar-name ${postId} editable`}
+            id={`${postId}`}
             value={title}
             onChange={(e) => dispatch(postActions.editPostTitle({ selectedId, postId, newTitle: e.target.value }))}
           />
         ) : (
-          <input disabled className={`post-bar-name ${postId} editable`} value={title} />
+          <input disabled className={`post-bar-name ${postId} editable`} id={`${postId}`} value={title} />
         )}
         <div className="post-bar-button-wrap">
           {/* 숨김 토글 */}
@@ -46,6 +47,12 @@ const Post = (props: { post: PostType; selectedId: number }) => {
             className="remove"
             onClick={(e) => {
               e.stopPropagation();
+              if (content) {
+                if (!window.confirm('내용이 있는 포스트입니다. 정말로 삭제하시겠습니까?')) {
+                  // 취소 눌렀을 시 삭제 안하기
+                }
+              }
+              // 내용이 없거나 확인을 눌렀을 시 삭제
               dispatch(postActions.deletePost({ boardId: selectedId, postId }));
             }}
           >
@@ -57,13 +64,15 @@ const Post = (props: { post: PostType; selectedId: number }) => {
       {editingId === postId ? (
         <textarea
           className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`}
+          id={`${postId}`}
           value={content}
           onChange={(e) => {
+            // 컨텐츠 수정
             dispatch(postActions.editPostContent({ selectedId, postId, newContent: e.target.value }));
           }}
         />
       ) : (
-        <textarea disabled className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`} value={content} />
+        <textarea disabled className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`} id={`${postId}`} value={content} />
       )}
     </div>
   );

@@ -55,8 +55,8 @@ const post = createReducer(initialState, {
   [createPost.type]: (state: PostListType, action: PayloadAction<{ selectedId: number; newPost: PostType }>) => {
     // 해당 보드에 만들어진 포스트가 있을 때(배열이 있을 때)
     // 생성될 포스트의 아이디
-    const newPostId = state.count + 1;
     state.count += 1;
+    const newPostId = state.count;
     // 생성될 아이디 넣기
     action.payload.newPost.postId = newPostId;
     if (Object.keys(state).includes(String(action.payload.selectedId))) {
@@ -102,7 +102,6 @@ const post = createReducer(initialState, {
   [deletePost.type]: (state: PostListType, action: PayloadAction<{ boardId: number; postId: number }>) => {
     const { boardId, postId } = action.payload;
     // 삭제할 포스트 인덱스 찾기
-    console.log(boardId, postId);
     const indexToDelete = state[boardId].findIndex((value) => value.postId === postId);
     state[boardId].splice(indexToDelete, 1);
   },
