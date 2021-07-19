@@ -45,6 +45,8 @@ const editPostTitle = createAction<{ selectedId: number; postId: number; newTitl
 const editPostContent = createAction<{ selectedId: number; postId: number; newContent: string }>('post/EDIT_POST_CONTENT');
 // Post의 숨김을 활성화/비활성화하는 액션 생성자
 const togglePostHideMode = createAction<{ boardId: number; postId: number }>('post/TOGGLE_POST_HIDE_MODE');
+// Post를 삭제하는 액션 생성자
+const deletePost = createAction<{ boardId: number; postId: number }>('post/DELETE_POST');
 
 // 리듀서
 // 스토어에 접근하여 상태관리
@@ -94,8 +96,15 @@ const post = createReducer(initialState, {
   [togglePostHideMode.type]: (state: PostListType, action: PayloadAction<{ boardId: number; postId: number }>) => {
     const { boardId, postId } = action.payload;
     // 숨김 모드를 토글할 포스트가 위치한 index 찾기
-    const hideToggleIndex = state[boardId].findIndex((value) => value.postId === postId);
-    state[boardId][hideToggleIndex].hide = !state[boardId][hideToggleIndex].hide;
+    const indexToHide = state[boardId].findIndex((value) => value.postId === postId);
+    state[boardId][indexToHide].hide = !state[boardId][indexToHide].hide;
+  },
+  [deletePost.type]: (state: PostListType, action: PayloadAction<{ boardId: number; postId: number }>) => {
+    const { boardId, postId } = action.payload;
+    // 삭제할 포스트 인덱스 찾기
+    console.log(boardId, postId);
+    const indexToDelete = state[boardId].findIndex((value) => value.postId === postId);
+    state[boardId].splice(indexToDelete, 1);
   },
 });
 
@@ -106,6 +115,7 @@ export const postActions = {
   editPostContent,
   setEditingPostId,
   togglePostHideMode,
+  deletePost,
 };
 
 export default post;

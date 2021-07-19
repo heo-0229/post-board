@@ -34,13 +34,23 @@ const Post = (props: { post: PostType; selectedId: number }) => {
           {/* 숨김 토글 */}
           <button
             className="hide"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               dispatch(postActions.togglePostHideMode({ boardId: selectedId, postId }));
             }}
           >
             −
           </button>
-          <button className="remove">x</button>
+          {/* 삭제 */}
+          <button
+            className="remove"
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(postActions.deletePost({ boardId: selectedId, postId }));
+            }}
+          >
+            x
+          </button>
         </div>
       </div>
       {/* 수정 기능 */}
