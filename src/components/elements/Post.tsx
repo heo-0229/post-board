@@ -29,7 +29,7 @@ const Post = (props: { post: PostType; selectedId: number }) => {
             onChange={(e) => dispatch(postActions.editPostTitle({ selectedId, postId, newTitle: e.target.value }))}
           />
         ) : (
-          <input disabled className={`post-bar-name ${postId} editable`} id={`${postId}`} value={title} />
+          <input disabled className={`post-bar-name ${postId} editable`} value={title} />
         )}
         <div className="post-bar-button-wrap">
           {/* 숨김 토글 */}
@@ -64,7 +64,6 @@ const Post = (props: { post: PostType; selectedId: number }) => {
       {editingId === postId ? (
         <textarea
           className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`}
-          id={`${postId}`}
           value={content}
           onChange={(e) => {
             // 컨텐츠 수정
@@ -72,7 +71,7 @@ const Post = (props: { post: PostType; selectedId: number }) => {
           }}
         />
       ) : (
-        <textarea disabled className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`} id={`${postId}`} value={content} />
+        <textarea disabled className={`post-text ${postId} editable ${hide ? 'hidemode' : ''}`} value={content} />
       )}
     </div>
   );
